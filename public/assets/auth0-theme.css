@@ -153,8 +153,7 @@
 }
 
 .logo {
-  /* background-image: url('deere-logo.png'); */
-  background-image: url('WOF_s42_onion_logo_rev.png');
+  background-image: url('https://logo.clearbit.com/auth0.com');
   width: 128px;
   height: 128px;
   background-repeat: no-repeat;
