@@ -1,5 +1,5 @@
 {
-    "name": "auth0-nextjs-sample",
+    "name": "auth0-nextjs-org-demo",
     "version": "0.1.0",
     "private": true,
     "scripts": {
@@ -14,7 +14,7 @@
         "test:integration:watch": "start-server-and-test start http-get://localhost:3000 cypress:open",
         "cypress:run": "cypress run --browser chrome",
         "cypress:open": "cypress open --browser chrome",
-        "deploy": "gcloud run deploy acul-demo --source . --allow-unauthenticated"
+        "deploy": "gcloud run deploy org-demo --source . --allow-unauthenticated"
     },
     "dependencies": {
         "@auth0/nextjs-auth0": "^3.6.0",

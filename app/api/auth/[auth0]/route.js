@@ -9,36 +9,6 @@ http://localhost:3000/api/auth/login?invitation=8FoiqC8kTgNY7pApGgY9mUs5UGBk9VPq
 
 import { handleAuth, handleLogin } from '@auth0/nextjs-auth0';
 
-// function getInvitationParameters(req) {
-//   // req.query does not work, since this is undefined (not forwarded?).
-//   // new URLSearchParams(req.url) also does not work, since this delimits only on '&' (see comment below).
-//   const { searchParams } = new URL(req.url);
-//   return {
-//     invitation: searchParams.get('invitation') || undefined,
-//     organization: searchParams.get('organization') || 'org_TfaKJV07eYX6mbJc',
-//     organization_name: searchParams.get('organization_name') || 'atko',
-//     'ext-org-id': searchParams.get('organization') || 'org_TfaKJV07eYX6mbJc',
-//     'ext-invitation': searchParams.get('invitation') || undefined
-//   };
-// }
-
-// export const GET = handleAuth({
-//   login: handleLogin(req => {
-//     return { authorizationParams: { ...getInvitationParameters(req) } };
-//   })
-// });
-
-//export const GET = handleAuth();
-
-// function getURLParameters(req) {
-//   // req.query does not work, since this is undefined (not forwarded?).
-//   // new URLSearchParams(req.url) also does not work, since this delimits only on '&' (see comment below).
-//   const { searchParams } = new URL(req.url);
-//   return {
-//     screen_hint: searchParams.get('screen_hint') || undefined
-//   };
-// }
-
 export const GET = handleAuth({
   login: handleLogin(req => {
     const { searchParams } = new URL(req.url);
@@ -46,17 +16,22 @@ export const GET = handleAuth({
     const connection = searchParams.get('connection') || undefined;
     const login_hint = searchParams.get('login_hint') || undefined;
     const returnTo = searchParams.get('returnTo') || '/';
-
-    console.log('screen_hint', screen_hint);
-    console.log('connection', connection);
-    console.log('login_hint', login_hint);
-    console.log('return_to', returnTo);
+    const organization = searchParams.get('organization') || 'org_TfaKJV07eYX6mbJc';
+    const organization_name = searchParams.get('organization_name') || 'atko';
+    const invitation = searchParams.get('invitation') || undefined;
+    const ext_org_id = searchParams.get('organization') || 'org_TfaKJV07eYX6mbJc';
+    const ext_invitation = searchParams.get('invitation') || undefined;
 
     return {
       authorizationParams: {
         screen_hint: screen_hint,
         connection: connection,
-        login_hint: login_hint
+        login_hint: login_hint,
+        invitation: invitation,
+        organization: organization,
+        organization_name: organization_name,
+        'ext-org-id': ext_org_id,
+        'ext-invitation-id': ext_invitation
       },
       returnTo: returnTo
     };
